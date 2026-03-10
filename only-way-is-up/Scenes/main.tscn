@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3xobfdw3nmma"]
+[gd_scene load_steps=4 format=3 uid="uid://d3xobfdw3nmma"]
 
 [ext_resource type="PackedScene" uid="uid://dskeh4e2pbtiu" path="res://Scenes/Player.tscn" id="1_jjgbg"]
+[ext_resource type="Texture2D" uid="uid://glknsvn07np3" path="res://icon.svg" id="2_dnw65"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 size = Vector2(1922, 31)
@@ -15,5 +16,11 @@ position = Vector2(951, 5.5)
 shape = SubResource("RectangleShape2D_7u77a")
 metadata/_edit_lock_ = true
 
-[node name="RigidBody2D" parent="." instance=ExtResource("1_jjgbg")]
+[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
 position = Vector2(972, 456)
+
+[node name="Icon" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1580, 729.5)
+scale = Vector2(22.6563, 12.5391)
+texture = ExtResource("2_dnw65")
