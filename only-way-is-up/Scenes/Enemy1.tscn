@@ -6,14 +6,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_pakhj"]
 radius = 107.005
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" groups=["Enemy"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0sjbo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
 shape = SubResource("CircleShape2D_pakhj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Enemy"]]
 texture = ExtResource("1_bwp4a")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
