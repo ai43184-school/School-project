@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3xobfdw3nmma"]
+[gd_scene format=3 uid="uid://d3xobfdw3nmma"]
 
 [ext_resource type="PackedScene" uid="uid://dskeh4e2pbtiu" path="res://Scenes/Player.tscn" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://glknsvn07np3" path="res://icon.svg" id="2_dnw65"]
@@ -10,25 +10,28 @@ size = Vector2(1922, 31)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xgt5"]
 bounce = 0.25
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=201009833]
 
-[node name="platform" type="StaticBody2D" parent="."]
+[node name="platform" type="StaticBody2D" parent="." unique_id=1452183049]
 position = Vector2(13, 1053)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform" unique_id=1263475553]
 position = Vector2(951, 5.5)
 shape = SubResource("RectangleShape2D_7u77a")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
+[node name="Player" parent="." unique_id=1184627149 instance=ExtResource("1_jjgbg")]
 position = Vector2(972, 456)
 physics_material_override = SubResource("PhysicsMaterial_0xgt5")
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="." unique_id=1681735688]
 z_index = -1
 position = Vector2(966.5, 1067.5)
 scale = Vector2(14.9141, 0.398437)
 texture = ExtResource("2_dnw65")
 
-[node name="Area2D" parent="." instance=ExtResource("3_pubdq")]
+[node name="Enemy" parent="." unique_id=1623239101 instance=ExtResource("3_pubdq")]
 position = Vector2(1577, 624)
+
+[node name="Enemy2" parent="." unique_id=1580270769 instance=ExtResource("3_pubdq")]
+position = Vector2(519, 800)
