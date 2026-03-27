@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3xobfdw3nmma"]
+[gd_scene load_steps=6 format=3 uid="uid://d3xobfdw3nmma"]
 
 [ext_resource type="PackedScene" uid="uid://dskeh4e2pbtiu" path="res://Scenes/Player.tscn" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://drw6ebrfgq2or" path="res://Assets/platform.png" id="2_5k88t"]
-[ext_resource type="PackedScene" uid="uid://cvy4p4jgamrb8" path="res://Scenes/Enemy1.tscn" id="3_pubdq"]
 [ext_resource type="PackedScene" uid="uid://mtkea6vefooh" path="res://Scenes/GameManager.tscn" id="4_7nqhl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
@@ -30,11 +29,5 @@ z_index = -1
 position = Vector2(966.5, 1060)
 scale = Vector2(1.66753, 0.0493829)
 texture = ExtResource("2_5k88t")
-
-[node name="Enemy" parent="." instance=ExtResource("3_pubdq")]
-position = Vector2(1577, 624)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_pubdq")]
-position = Vector2(519, 800)
 
 [node name="GameManager" parent="." instance=ExtResource("4_7nqhl")]

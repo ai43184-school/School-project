@@ -29,4 +29,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemy"):
-		linear_velocity += Vector2.UP*1200
+		linear_velocity += Vector2.UP*500
