@@ -8,9 +8,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 size = Vector2(1922, 31)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xgt5"]
-bounce = 0.25
-
 [node name="Main" type="Node2D" unique_id=1208540577]
 
 [node name="platform" type="StaticBody2D" parent="." unique_id=813966761]
@@ -20,10 +17,6 @@ position = Vector2(13, 1053)
 position = Vector2(951, 5.5)
 shape = SubResource("RectangleShape2D_7u77a")
 metadata/_edit_lock_ = true
-
-[node name="Player" parent="." unique_id=326094340 instance=ExtResource("1_jjgbg")]
-position = Vector2(985, 979)
-physics_material_override = SubResource("PhysicsMaterial_0xgt5")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=817837624]
 z_index = -1
@@ -35,3 +28,8 @@ texture = ExtResource("2_5k88t")
 
 [node name="Enemy" parent="." unique_id=364098181 instance=ExtResource("4_jjvhh")]
 position = Vector2(389, 1406)
+
+[node name="Player" parent="." unique_id=1072527857 instance=ExtResource("1_jjgbg")]
+
+[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=443207109]
+position_smoothing_enabled = true

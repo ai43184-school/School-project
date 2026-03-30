@@ -11,7 +11,7 @@ radius = 61.0082
 
 [node name="Player" type="RigidBody2D" unique_id=1072527857 node_paths=PackedStringArray("camera_2d") groups=["Player"]]
 script = ExtResource("1_kpjcp")
-camera_2d = NodePath("Camera2D")
+camera_2d = NodePath("")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2101750744 groups=["Player"]]
 scale = Vector2(0.5, 0.5)
@@ -20,13 +20,6 @@ shape = SubResource("CircleShape2D_kpjcp")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1307933474 groups=["Player"]]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_xhfnw")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=197277803]
-limit_left = -500000000
-limit_top = -500000000
-limit_right = 500000000
-limit_bottom = 500000000
-position_smoothing_enabled = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=133005129 groups=["Player"]]
 

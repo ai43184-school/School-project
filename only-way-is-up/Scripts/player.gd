@@ -7,12 +7,32 @@ var direction : Vector2 = Vector2.ZERO
 var speed: float = 2
 
 # spawning enemies
-@onready var enemy = preload("res://Scenes/Enemy1.tscn")
+@onready var enemy_scene = preload("res://Scenes/Enemy1.tscn")
 
-var enemies = ["normalEnemy", "spikeEnemy"]
+var enemies = ["normalEnemy", "spikeEnemy"] # Note: Not currently used in your spawn logic
 
-var distance: float
-var distanceUsed: float
+var distance: float = 0.0
+var distance_used: float = 0.0
+var spawn_interval: float = 50.0 # Adjust this for how often enemies spawn
+
+func spawn_enemy():
+	var enemy_to_spawn = select_enemy_to_spawn()
+	
+	# Your custom random Y calculation
+	var x_pos: float = floor(abs(randf_range(0.0, -50.0) - randf_range(0.0, 50.0)) * (100 - (-2)) + (-2))
+	var pos_to_spawn_enemy: Vector2 = Vector2(x_pos, distance)
+	
+	enemy_to_spawn.position = pos_to_spawn_enemy
+	print("Spawning enemy at: ", pos_to_spawn_enemy)
+	
+	# Using get_parent().add_child() is often safer than add_sibling() 
+	# to avoid issues with the scene tree order.
+	get_parent().add_child(enemy_to_spawn)
+
+func select_enemy_to_spawn():
+	# This takes the PackedScene and creates an actual node instance
+	var new_enemy = enemy_scene.instantiate()
+	return new_enemy
 
 
 func Launch():
@@ -28,36 +48,18 @@ func Launch():
 	else:
 		Engine.time_scale = 1
 
-func _physics_process(delta: float) -> void:
+func _process(delta):
 	if GameManager.can_launch:
 		Launch()
 	
+	# 1. Update the 'distance' based on player progress
+	if (distance < position.y + 50):
+		distance = position.y - 500
 	
-	if (distance < position.x + 50):
-		distance = position.x + 50
-	
-	var distToGo: float = floor(distance - distanceUsed)
-	
-	if (distanceUsed < distance && distToGo > 4):
-		distanceUsed = distance
-		SpawnEnemy()
-	
-	
-	
-
-func SpawnEnemy():
-	var enemyToSpawn = SelectEnemyToSpawn()
-	
-	var yPos: float = floor(abs(randf_range(0.0,1.0)-randf_range(0.0,1.0)) * (1+100 - (-2)) + (-2))
-	var posToSpawnEnemy: Vector2 = Vector2(distance,yPos)
-	
-	enemyToSpawn.position = posToSpawnEnemy
-	print(posToSpawnEnemy)
-	add_sibling(enemyToSpawn)
-
-func SelectEnemyToSpawn():
-	var enemy_scene = enemy.instantiate()
-	return enemy_scene
+	# 2. Logic to trigger a spawn every 'spawn_interval' units
+	if (distance - distance_used > spawn_interval):
+		distance_used = distance
+		spawn_enemy()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	GameManager.can_launch = true
