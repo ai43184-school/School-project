@@ -1,36 +1,38 @@
 extends RigidBody2D
 
 @export var camera_2d: Camera2D
+@export var trajectory_line: Line2D
+@export var hitbox: CollisionObject2D
 
 var velocity : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2.ZERO
 var speed: float = 2
+var start_line_pos
 
 # spawning enemies
 @onready var enemy_scene = preload("res://Scenes/Enemy1.tscn")
 
-var enemies = ["normalEnemy", "spikeEnemy"] # Note: Not currently used in your spawn logic
+var enemies = ["normalEnemy", "spikeEnemy"] 
 
 var distance: float = 0.0
 var distance_used: float = 0.0
-var spawn_interval: float = 50.0 # Adjust this for how often enemies spawn
+var spawn_interval: float = 500.0
+
+func _ready():
+	trajectory_line.width = 10.0
 
 func spawn_enemy():
 	var enemy_to_spawn = select_enemy_to_spawn()
 	
-	# Your custom random Y calculation
-	var x_pos: float = floor(abs(randf_range(0.0, -50.0) - randf_range(0.0, 50.0)) * (100 - (-2)) + (-2))
+	var x_pos: float = floor(abs(randf_range(0.0, -200.0) - randf_range(0.0, 200.0)) * (100 - (-2)) + (-2))
 	var pos_to_spawn_enemy: Vector2 = Vector2(x_pos, distance)
 	
 	enemy_to_spawn.position = pos_to_spawn_enemy
 	print("Spawning enemy at: ", pos_to_spawn_enemy)
 	
-	# Using get_parent().add_child() is often safer than add_sibling() 
-	# to avoid issues with the scene tree order.
 	get_parent().add_child(enemy_to_spawn)
 
 func select_enemy_to_spawn():
-	# This takes the PackedScene and creates an actual node instance
 	var new_enemy = enemy_scene.instantiate()
 	return new_enemy
 
@@ -40,6 +42,8 @@ func Launch():
 	if Input.is_action_pressed("Launch"):
 		Engine.time_scale = 0.25
 		look_at(get_global_mouse_position())
+		trajectory_line.add_point(start_line_pos)
+		trajectory_line.add_point(get_global_mouse_position())
 	elif Input.is_action_just_released("Launch"):
 		linear_velocity = velocity
 		apply_impulse(direction * speed)
@@ -47,17 +51,20 @@ func Launch():
 		GameManager.can_launch = true
 	else:
 		Engine.time_scale = 1
+		
 
 func _process(delta):
+	start_line_pos = hitbox.position
+	if get_global_mouse_position():
+		trajectory_line.clear_points()
+	
 	if GameManager.can_launch:
 		Launch()
 	
-	# 1. Update the 'distance' based on player progress
-	if (distance < position.y + 50):
+	if (distance < position.y - 50):
 		distance = position.y - 500
-	
-	# 2. Logic to trigger a spawn every 'spawn_interval' units
-	if (distance - distance_used > spawn_interval):
+
+	if (distance - distance_used - spawn_interval):
 		distance_used = distance
 		spawn_enemy()
 

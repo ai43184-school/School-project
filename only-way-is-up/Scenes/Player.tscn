@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dskeh4e2pbtiu"]
+[gd_scene load_steps=5 format=3 uid="uid://dskeh4e2pbtiu"]
 
-[ext_resource type="Script" uid="uid://c48y4rqxaqp5x" path="res://Scripts/player.gd" id="1_kpjcp"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://b6jm6adcno4oj" path="res://Assets/Player.png" id="1_xhfnw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
@@ -9,22 +9,25 @@ radius = 118.377
 [sub_resource type="CircleShape2D" id="CircleShape2D_r13av"]
 radius = 61.0082
 
-[node name="Player" type="RigidBody2D" unique_id=1072527857 node_paths=PackedStringArray("camera_2d") groups=["Player"]]
+[node name="Player" type="RigidBody2D" node_paths=PackedStringArray("trajectory_line", "hitbox") groups=["Player"]]
 script = ExtResource("1_kpjcp")
-camera_2d = NodePath("")
+trajectory_line = NodePath("Line2D")
+hitbox = NodePath("Area2D")
 
-[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2101750744 groups=["Player"]]
+[node name="Hitbox" type="CollisionShape2D" parent="." groups=["Player"]]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_kpjcp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1307933474 groups=["Player"]]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Player"]]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_xhfnw")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=133005129 groups=["Player"]]
+[node name="Area2D" type="Area2D" parent="." groups=["Player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=574158093 groups=["Player"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Player"]]
 shape = SubResource("CircleShape2D_r13av")
+
+[node name="Line2D" type="Line2D" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
