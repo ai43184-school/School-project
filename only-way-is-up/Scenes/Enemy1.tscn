@@ -6,9 +6,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_pakhj"]
 radius = 107.005
 
-[node name="Enemy" type="Area2D" groups=["Enemy"]]
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("death_timer", "particles", "sprite") groups=["Enemy"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0sjbo")
+death_timer = NodePath("DeathTimer")
+particles = NodePath("CPUParticles2D")
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pakhj")
@@ -16,5 +19,22 @@ shape = SubResource("CircleShape2D_pakhj")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bwp4a")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+rotation = -1.58905
+one_shot = true
+explosiveness = 0.3
+emission_shape = 1
+emission_sphere_radius = 60.05
+initial_velocity_max = 1000.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_amount_min = 0.0
+scale_amount_max = 60.61
+color = Color(0.929412, 0.109804, 0.141176, 1)
+
+[node name="DeathTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

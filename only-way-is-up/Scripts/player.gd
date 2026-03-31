@@ -6,7 +6,7 @@ extends RigidBody2D
 
 var velocity : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2.ZERO
-var speed: float = 2
+var speed: float = 1.5
 var start_line_pos
 
 # spawning enemies
@@ -16,7 +16,7 @@ var enemies = ["normalEnemy", "spikeEnemy"]
 
 var distance: float = 0.0
 var distance_used: float = 0.0
-var spawn_interval: float = 500.0
+var spawn_interval: float = 100.0
 
 func _ready():
 	trajectory_line.width = 10.0
@@ -24,7 +24,7 @@ func _ready():
 func spawn_enemy():
 	var enemy_to_spawn = select_enemy_to_spawn()
 	
-	var x_pos: float = floor(abs(randf_range(0.0, -200.0) - randf_range(0.0, 200.0)) * (100 - (-2)) + (-2))
+	var x_pos: float = floor(abs(randf_range(0.0, -350.0) - randf_range(0.0, 350.0)) * (100 - (-2)) + (-2))
 	var pos_to_spawn_enemy: Vector2 = Vector2(x_pos, distance)
 	
 	enemy_to_spawn.position = pos_to_spawn_enemy
@@ -62,9 +62,9 @@ func _process(delta):
 		Launch()
 	
 	if (distance < position.y - 50):
-		distance = position.y - 500
+		distance = position.y - 1000
 
-	if (distance - distance_used - spawn_interval):
+	if (distance - distance_used < spawn_interval):
 		distance_used = distance
 		spawn_enemy()
 
@@ -74,5 +74,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemy"):
-		linear_velocity = -linear_velocity / 4
-		linear_velocity += Vector2.UP*500
+		linear_velocity.x = linear_velocity.x
+		linear_velocity.y = linear_velocity.y - 500
