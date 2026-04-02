@@ -22,8 +22,9 @@ texture = ExtResource("1_bwp4a")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 visible = false
 rotation = -1.58905
+lifetime = 0.7
 one_shot = true
-explosiveness = 0.3
+explosiveness = 1.0
 emission_shape = 1
 emission_sphere_radius = 60.05
 initial_velocity_max = 1000.0
