@@ -11,7 +11,8 @@ size = Vector2(1922, 31)
 [node name="Main" type="Node2D"]
 
 [node name="platform" type="StaticBody2D" parent="."]
-position = Vector2(12598.5, 967)
+position = Vector2(11798.5, 974.538)
+scale = Vector2(4.31793, 1.58924)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platform"]
 position = Vector2(191.45, 5.5)
@@ -20,14 +21,14 @@ metadata/_edit_lock_ = true
 
 [node name="Icon" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(12598.5, 974)
-scale = Vector2(1.66753, 0.0493829)
+position = Vector2(12622, 989.538)
+scale = Vector2(7.21179, 0.0880797)
 texture = ExtResource("2_5k88t")
 
 [node name="GameManager" parent="." instance=ExtResource("4_7nqhl")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera_2d") instance=ExtResource("1_jjgbg")]
-position = Vector2(12598.5, -86)
+position = Vector2(12621, 861)
 camera_2d = NodePath("Camera2D2")
 
 [node name="Camera2D2" type="Camera2D" parent="Player" node_paths=PackedStringArray("player")]

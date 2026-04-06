@@ -8,6 +8,7 @@ var velocity : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2.ZERO
 var speed: float = 1.5
 var start_line_pos
+var end_line_pos
 
 # spawning enemies
 @onready var enemy_scene = preload("res://Scenes/Enemy1.tscn")
@@ -41,28 +42,28 @@ func Launch():
 	direction = (get_global_mouse_position() - position)
 	if Input.is_action_pressed("Launch"):
 		Engine.time_scale = 0.25
-		look_at(get_global_mouse_position())
 		trajectory_line.add_point(start_line_pos)
-		trajectory_line.add_point(get_global_mouse_position())
+		trajectory_line.add_point(end_line_pos)
 	elif Input.is_action_just_released("Launch"):
 		linear_velocity = velocity
 		apply_impulse(direction * speed)
 		Engine.time_scale = 1
-		GameManager.can_launch = true
+		GameManager.can_launch = false
 	else:
 		Engine.time_scale = 1
 		
 
 func _process(delta):
-	start_line_pos = hitbox.position
-	if get_global_mouse_position():
+	start_line_pos = to_local(position)
+	end_line_pos = get_local_mouse_position()
+	if get_local_mouse_position():
 		trajectory_line.clear_points()
 	
 	if GameManager.can_launch:
 		Launch()
 	
-	if (distance < position.y - 50):
-		distance = position.y - 1000
+	if (distance < position.y - 30):
+		distance = position.y - 900
 
 	if (distance - distance_used < spawn_interval):
 		distance_used = distance

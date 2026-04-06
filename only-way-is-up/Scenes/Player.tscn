@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dskeh4e2pbtiu"]
+[gd_scene load_steps=6 format=3 uid="uid://dskeh4e2pbtiu"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://b6jm6adcno4oj" path="res://Assets/Player.png" id="1_xhfnw"]
@@ -8,6 +8,10 @@ radius = 118.377
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r13av"]
 radius = 61.0082
+
+[sub_resource type="Gradient" id="Gradient_apxsm"]
+offsets = PackedFloat32Array(0, 0.00666667, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0.0784314, 1, 0.0784314, 0.521569, 0, 1, 0, 0.101961)
 
 [node name="Player" type="RigidBody2D" node_paths=PackedStringArray("trajectory_line", "hitbox") groups=["Player"]]
 script = ExtResource("1_kpjcp")
@@ -28,6 +32,10 @@ texture = ExtResource("1_xhfnw")
 shape = SubResource("CircleShape2D_r13av")
 
 [node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+texture_filter = 1
+default_color = Color(0.0784314, 0.654902, 0.466667, 1)
+gradient = SubResource("Gradient_apxsm")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
