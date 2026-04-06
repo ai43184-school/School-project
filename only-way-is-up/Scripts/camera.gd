@@ -22,7 +22,10 @@ func _process(delta):
 	position = Vector2((lerp(position, player.position, velSpeed)))
 	
 	var desiredZoom: float = defaultZoom + position.distance_to(player.position)
-	if (desiredZoom > 18):
-		desiredZoom = 18
+	if (desiredZoom > 180):
+		desiredZoom = 180
 	
+	zoom = lerp(zoom, Vector2(desiredZoom, position.y), velZoom)
 	
+	if (position. y < yMin):
+		position = Vector2(position.x, yMin)
