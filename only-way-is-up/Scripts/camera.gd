@@ -27,5 +27,5 @@ func _process(delta):
 	
 	zoom = lerp(zoom, Vector2(desiredZoom, position.y), velZoom)
 	
-	if (position. y < yMin):
+	if (position.y < yMin):
 		position = Vector2(position.x, yMin)

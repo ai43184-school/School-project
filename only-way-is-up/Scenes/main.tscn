@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3xobfdw3nmma"]
+[gd_scene load_steps=7 format=3 uid="uid://d3xobfdw3nmma"]
 
 [ext_resource type="PackedScene" uid="uid://dskeh4e2pbtiu" path="res://Scenes/Player.tscn" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://drw6ebrfgq2or" path="res://Assets/platform.png" id="2_5k88t"]
@@ -7,6 +7,25 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 size = Vector2(1922, 31)
+
+[sub_resource type="Environment" id="Environment_sfuh2"]
+background_mode = 3
+background_energy_multiplier = 2.18
+ambient_light_color = Color(0.65834, 0.65834, 0.65834, 1)
+ambient_light_energy = 3.53
+glow_enabled = true
+glow_intensity = 0.43
+glow_bloom = 0.53
+glow_blend_mode = 1
+fog_mode = 1
+fog_light_color = Color(0.294927, 0.235374, 0.307392, 1)
+fog_light_energy = 2.35
+fog_density = 1.0
+fog_height = 258.7
+fog_height_density = 8.4211
+adjustment_enabled = true
+adjustment_brightness = 0.92
+adjustment_contrast = 1.76
 
 [node name="Main" type="Node2D"]
 
@@ -27,12 +46,16 @@ texture = ExtResource("2_5k88t")
 
 [node name="GameManager" parent="." instance=ExtResource("4_7nqhl")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera_2d") instance=ExtResource("1_jjgbg")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera_2d", "environment") instance=ExtResource("1_jjgbg")]
 position = Vector2(12621, 861)
 camera_2d = NodePath("Camera2D2")
+environment = NodePath("../WorldEnvironment")
 
 [node name="Camera2D2" type="Camera2D" parent="Player" node_paths=PackedStringArray("player")]
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
 script = ExtResource("4_ddl6d")
 player = NodePath("..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sfuh2")

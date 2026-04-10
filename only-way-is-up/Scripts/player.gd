@@ -3,10 +3,11 @@ extends RigidBody2D
 @export var camera_2d: Camera2D
 @export var trajectory_line: Line2D
 @export var hitbox: CollisionObject2D
+@export var environment: WorldEnvironment
 
 var velocity : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2.ZERO
-var speed: float = 1.5
+var speed: float = 2.0
 var start_line_pos
 var end_line_pos
 
@@ -25,7 +26,7 @@ func _ready():
 func spawn_enemy():
 	var enemy_to_spawn = select_enemy_to_spawn()
 	
-	var x_pos: float = floor(abs(randf_range(0.0, -350.0) - randf_range(0.0, 350.0)) * (100 - (-2)) + (-2))
+	var x_pos: float = floor(abs(randf_range(0.0, -400.0) - randf_range(0.0, 400.0)) * (100 - (-2)) + (-2))
 	var pos_to_spawn_enemy: Vector2 = Vector2(x_pos, distance)
 	
 	enemy_to_spawn.position = pos_to_spawn_enemy
@@ -42,6 +43,7 @@ func Launch():
 	direction = (get_global_mouse_position() - position)
 	if Input.is_action_pressed("Launch"):
 		Engine.time_scale = 0.25
+		environment.environment.adjustment_saturation = 0.5
 		trajectory_line.add_point(start_line_pos)
 		trajectory_line.add_point(end_line_pos)
 	elif Input.is_action_just_released("Launch"):
@@ -49,6 +51,7 @@ func Launch():
 		apply_impulse(direction * speed)
 		Engine.time_scale = 1
 		GameManager.can_launch = false
+		environment.environment.adjustment_saturation = 1
 	else:
 		Engine.time_scale = 1
 		
