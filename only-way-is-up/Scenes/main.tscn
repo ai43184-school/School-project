@@ -14,8 +14,9 @@ background_energy_multiplier = 2.18
 ambient_light_color = Color(0.65834, 0.65834, 0.65834, 1)
 ambient_light_energy = 3.53
 glow_enabled = true
-glow_intensity = 0.43
-glow_bloom = 0.53
+glow_intensity = 0.77
+glow_strength = 0.72
+glow_bloom = 1.0
 glow_blend_mode = 1
 fog_mode = 1
 fog_light_color = Color(0.294927, 0.235374, 0.307392, 1)
@@ -25,7 +26,8 @@ fog_height = 258.7
 fog_height_density = 8.4211
 adjustment_enabled = true
 adjustment_brightness = 0.92
-adjustment_contrast = 1.76
+adjustment_contrast = 1.17
+adjustment_saturation = 1.8
 
 [node name="Main" type="Node2D"]
 

@@ -7,7 +7,7 @@ extends RigidBody2D
 
 var velocity : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2.ZERO
-var speed: float = 2.0
+var speed: float = 1.7098642185873
 var start_line_pos
 var end_line_pos
 
@@ -22,6 +22,20 @@ var spawn_interval: float = 100.0
 
 func _ready():
 	trajectory_line.width = 10.0
+	
+	ready_enemies(100)
+
+func ready_enemies(amount):
+	var enemy = enemy_scene.instantiate()
+	for x in amount:
+		var spawn_x = randf_range(100, 200)
+		var spawn_y = randf_range(-100, -200)
+	
+		var offset = Vector2(spawn_x, spawn_y)
+		
+		enemy.global_position = global_position + offset
+		get_parent().add_child(enemy)
+		print("enemy spawned")
 
 func spawn_enemy():
 	var enemy_to_spawn = select_enemy_to_spawn()
@@ -43,7 +57,7 @@ func Launch():
 	direction = (get_global_mouse_position() - position)
 	if Input.is_action_pressed("Launch"):
 		Engine.time_scale = 0.25
-		environment.environment.adjustment_saturation = 0.5
+		environment.environment.adjustment_saturation = lerp(environment.environment.adjustment_saturation, 0.5, 0.1)
 		trajectory_line.add_point(start_line_pos)
 		trajectory_line.add_point(end_line_pos)
 	elif Input.is_action_just_released("Launch"):
@@ -51,8 +65,8 @@ func Launch():
 		apply_impulse(direction * speed)
 		Engine.time_scale = 1
 		GameManager.can_launch = false
-		environment.environment.adjustment_saturation = 1
 	else:
+		environment.environment.adjustment_saturation = lerp(environment.environment.adjustment_saturation, 1.0, 0.1)
 		Engine.time_scale = 1
 		
 
