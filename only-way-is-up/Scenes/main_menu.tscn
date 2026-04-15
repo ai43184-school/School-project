@@ -1,9 +1,69 @@
-[gd_scene format=3 uid="uid://c1e24bjpixpm0"]
+[gd_scene load_steps=2 format=3 uid="uid://c1e24bjpixpm0"]
 
-[node name="Main Menu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_f233x"]
+
+[node name="Main Menu" type="CanvasLayer"]
+script = ExtResource("1_f233x")
+
+[node name="Title" type="BoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.5
+offset_top = 127.15
+offset_right = 216.5
+offset_bottom = 210.15
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 60
+text = "Only Way is Up"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.807
+offset_top = -46.0325
+offset_right = 124.807
+offset_bottom = 46.0325
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play Button" type="Button" parent="Play"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[node name="Quit" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.807
+offset_top = 70.132
+offset_right = 124.808
+offset_bottom = 162.197
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="QuitButton" type="Button" parent="Quit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[connection signal="pressed" from="Play/Play Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Quit/QuitButton" to="." method="_on_quit_button_pressed"]
