@@ -22,20 +22,6 @@ var spawn_interval: float = 100.0
 
 func _ready():
 	trajectory_line.width = 10.0
-	
-	ready_enemies(100)
-
-func ready_enemies(amount):
-	var enemy = enemy_scene.instantiate()
-	for x in amount:
-		var spawn_x = randf_range(100, 200)
-		var spawn_y = randf_range(-100, -200)
-	
-		var offset = Vector2(spawn_x, spawn_y)
-		
-		enemy.global_position = global_position + offset
-		get_parent().add_child(enemy)
-		print("enemy spawned")
 
 func spawn_enemy():
 	var enemy_to_spawn = select_enemy_to_spawn()
@@ -80,7 +66,7 @@ func _process(delta):
 		Launch()
 	
 	if (distance < position.y - 30):
-		distance = position.y - 900
+		distance = position.y - 800
 
 	if (distance - distance_used < spawn_interval):
 		distance_used = distance
