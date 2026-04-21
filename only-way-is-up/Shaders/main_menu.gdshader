@@ -10,4 +10,3 @@ void fragment() {
 	float shift = floor(pixel_size / 2.0);
 	COLOR = texture(SCREEN_TEXTURE, vec2(x + shift, y + shift) * SCREEN_PIXEL_SIZE);
 }
-

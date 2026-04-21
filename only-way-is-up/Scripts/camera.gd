@@ -2,30 +2,22 @@ extends Camera2D
 
 @export var player: RigidBody2D
 
-var speed: float = 0.1
-var velSpeed: Vector2
+var velocity: Vector2
+var speed
+var max_speed: float = 1000.0
+var defaultZoom: float = 1.0
+var maxZoom: float = 0.3
+var zoom_speed = 5.0
 
-var defaultZoom: float = 7
-var zoomSpeed: float = 0.2
-var velZoom: float
 
-var hieght: float = 0
-
-var yMin: float = 0
-
-var instance: Node
-
-func _ready():
-	instance = self
-
-func _process(delta):
-	position = Vector2((lerp(position, player.position, velSpeed)))
+func _process(delta: float) -> void:
+	velocity = player.linear_velocity
+	speed = velocity.length()
+	var target_zoom_val = remap(speed, 0, max_speed, defaultZoom, maxZoom)
 	
-	var desiredZoom: float = defaultZoom + position.distance_to(player.position)
-	if (desiredZoom > 180):
-		desiredZoom = 180
+	target_zoom_val = clamp(target_zoom_val, maxZoom, defaultZoom)
 	
-	zoom = lerp(zoom, Vector2(desiredZoom, position.y), velZoom)
+	var target_zoom_vec = Vector2(target_zoom_val, target_zoom_val)
+	zoom = zoom.lerp(target_zoom_vec, zoom_speed * delta)
 	
-	if (position.y < yMin):
-		position = Vector2(position.x, yMin)
+	print(velocity)

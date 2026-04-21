@@ -30,7 +30,7 @@ func spawn_enemy():
 	var pos_to_spawn_enemy: Vector2 = Vector2(x_pos, distance)
 	
 	enemy_to_spawn.position = pos_to_spawn_enemy
-	print("Spawning enemy at: ", pos_to_spawn_enemy)
+	#print("Spawning enemy at: ", pos_to_spawn_enemy)
 	
 	get_parent().add_child(enemy_to_spawn)
 

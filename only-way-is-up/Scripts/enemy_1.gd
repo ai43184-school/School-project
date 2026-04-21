@@ -2,18 +2,31 @@ extends Area2D
 
 @export var death_timer: Timer
 @export var particles: CPUParticles2D
-@export var sprite: Sprite2D
+@export var sprite: AnimatedSprite2D
+var enemy_type
 
+var enemies = ["enemy", "spike"]
+
+func _ready() -> void:
+	enemy_type = enemies.pick_random()
+	if enemy_type == "enemy":
+		sprite.animation = "default"
+	if enemy_type == "spike":
+		sprite.animation = "Spike"
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		death_timer.start()
-		$CollisionShape2D.queue_free()
-		GameManager.enemydeath.emit(1)
-		GameManager.can_launch = true
-		sprite.visible = false
-		particles.restart()
-		particles.visible = true
+		if enemy_type == "enemy":
+			death_timer.start()
+			$CollisionShape2D.queue_free()
+			GameManager.enemydeath.emit(1)
+			GameManager.can_launch = true
+			sprite.visible = false
+			particles.restart()
+			particles.visible = true
+		
+		if enemy_type == "spike":
+			body.queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:

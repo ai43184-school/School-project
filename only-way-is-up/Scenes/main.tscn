@@ -54,7 +54,7 @@ camera_2d = NodePath("Camera2D2")
 environment = NodePath("../WorldEnvironment")
 
 [node name="Camera2D2" type="Camera2D" parent="Player" node_paths=PackedStringArray("player")]
-zoom = Vector2(0.6, 0.6)
+zoom = Vector2(0.7, 0.7)
 position_smoothing_enabled = true
 script = ExtResource("4_ddl6d")
 player = NodePath("..")
