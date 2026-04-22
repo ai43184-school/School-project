@@ -5,7 +5,7 @@ extends Area2D
 @export var sprite: AnimatedSprite2D
 var enemy_type
 
-var enemies = ["enemy", "spike"]
+var enemies = ["enemy", "enemy", "spike"]
 
 func _ready() -> void:
 	enemy_type = enemies.pick_random()
@@ -26,7 +26,14 @@ func _on_body_entered(body: Node2D) -> void:
 			particles.visible = true
 		
 		if enemy_type == "spike":
-			body.queue_free()
+			GameManager.take_damage()
+			death_timer.start()
+			$CollisionShape2D.queue_free()
+			GameManager.enemydeath.emit(1)
+			GameManager.can_launch = true
+			sprite.visible = false
+			particles.restart()
+			particles.visible = true
 
 
 func _on_area_entered(area: Area2D) -> void:

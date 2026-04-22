@@ -20,6 +20,8 @@ var distance: float = 0.0
 var distance_used: float = 0.0
 var spawn_interval: float = 100.0
 
+
+
 func _ready():
 	trajectory_line.width = 10.0
 
@@ -57,6 +59,9 @@ func Launch():
 		
 
 func _process(delta):
+	if GameManager.health <= 0:
+		queue_free()
+	
 	start_line_pos = to_local(position)
 	end_line_pos = get_local_mouse_position()
 	if get_local_mouse_position():
