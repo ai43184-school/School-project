@@ -7,13 +7,11 @@ signal enemydeath
 var can_launch = true
 
 #health
+signal playerdamage
+
 var health: int = 3
 var damage: int = 1
 var heal: int = 1
 
-
-func take_damage():
-	health -= damage
-
-func give_heal():
-	health += heal
+#func _process(delta: float) -> void:
+	#print(health)

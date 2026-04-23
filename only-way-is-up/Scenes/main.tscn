@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3xobfdw3nmma"]
+[gd_scene load_steps=8 format=3 uid="uid://d3xobfdw3nmma"]
 
 [ext_resource type="PackedScene" uid="uid://dskeh4e2pbtiu" path="res://Scenes/Player.tscn" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://drw6ebrfgq2or" path="res://Assets/platform.png" id="2_5k88t"]
 [ext_resource type="PackedScene" uid="uid://mtkea6vefooh" path="res://Scenes/GameManager.tscn" id="4_7nqhl"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="4_ddl6d"]
+[ext_resource type="PackedScene" uid="uid://cwokyxkuat3kt" path="res://Scenes/hud.tscn" id="5_m2k3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 size = Vector2(1922, 31)
@@ -61,3 +62,5 @@ player = NodePath("..")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sfuh2")
+
+[node name="HUD" parent="." instance=ExtResource("5_m2k3o")]
