@@ -28,7 +28,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if enemy_type == "spike":
 			death_timer.start()
 			$CollisionShape2D.queue_free()
-			GameManager.playerdamage.emit(1)
+			GameManager.playerdamage.emit()
 			GameManager.enemydeath.emit(1)
 			GameManager.can_launch = true
 			sprite.visible = false

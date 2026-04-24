@@ -26,6 +26,7 @@ ProgressBar/styles/background = SubResource("StyleBoxFlat_ciif7")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_llh7y")
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_am8j0")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 offset_right = 616.0
@@ -40,4 +41,3 @@ theme = SubResource("Theme_tqpws")
 max_value = 3.0
 value = 3.0
 show_percentage = false
-script = ExtResource("1_am8j0")

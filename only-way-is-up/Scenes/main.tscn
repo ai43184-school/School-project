@@ -64,3 +64,5 @@ player = NodePath("..")
 environment = SubResource("Environment_sfuh2")
 
 [node name="HUD" parent="." instance=ExtResource("5_m2k3o")]
+
+[connection signal="playerdamage" from="GameManager" to="HUD" method="_on_game_manager_playerdamage"]
