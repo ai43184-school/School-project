@@ -60,7 +60,7 @@ func Launch():
 
 func _process(delta):
 	if GameManager.health == 0:
-		print("I am dead!")
+		queue_free()
 	
 	start_line_pos = to_local(position)
 	end_line_pos = get_local_mouse_position()

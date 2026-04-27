@@ -7,4 +7,5 @@ script = ExtResource("1_s7ma2")
 
 [node name="HitTimer" type="Timer" parent="."]
 
+[connection signal="playerdamage" from="." to="." method="_on_playerdamage"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
