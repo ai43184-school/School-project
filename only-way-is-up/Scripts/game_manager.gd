@@ -17,6 +17,9 @@ var heal: int = 1
 var can_be_hit = true
 var took_damage = false
 
+#Scoring
+var score: int = 0
+
 #func _process(delta: float) -> void:
 	#print(health)
 

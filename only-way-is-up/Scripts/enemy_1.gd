@@ -24,6 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 			sprite.visible = false
 			particles.restart()
 			particles.visible = true
+			GameManager.score += 100
 		
 		if enemy_type == "spike":
 			death_timer.start()

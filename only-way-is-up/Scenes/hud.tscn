@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwokyxkuat3kt"]
+[gd_scene load_steps=6 format=3 uid="uid://cwokyxkuat3kt"]
 
-[ext_resource type="Script" path="res://Scenes/health_bar.gd" id="1_am8j0"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_0r073"]
+[ext_resource type="FontFile" uid="uid://dutybfv53jaj4" path="res://Assets/FONTS/Smooch_Sans/static/SmoochSans-Bold.ttf" id="2_hs4jk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ciif7"]
 bg_color = Color(0.176419, 0.176419, 0.176419, 1)
@@ -26,11 +27,11 @@ ProgressBar/styles/background = SubResource("StyleBoxFlat_ciif7")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_llh7y")
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_am8j0")
+script = ExtResource("1_0r073")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
-offset_right = 616.0
-offset_bottom = 108.0
+offset_right = 467.0
+offset_bottom = 57.0
 
 [node name="ProgressBar" type="ProgressBar" parent="BoxContainer"]
 modulate = Color(1, 1, 1, 0.372549)
@@ -41,3 +42,25 @@ theme = SubResource("Theme_tqpws")
 max_value = 3.0
 value = 3.0
 show_percentage = false
+
+[node name="ScoreContainer" type="BoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -338.0
+offset_right = 338.0
+offset_bottom = 72.0
+grow_horizontal = 2
+
+[node name="Score" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.374139, 0.374139, 0.374139, 1)
+theme_override_colors/font_outline_color = Color(0.813258, 0.813258, 0.813258, 1)
+theme_override_fonts/font = ExtResource("2_hs4jk")
+theme_override_font_sizes/font_size = 60
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
