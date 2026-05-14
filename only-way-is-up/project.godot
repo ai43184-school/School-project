@@ -16,8 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Only Way is Up"
 run/main_scene="res://Scenes/main_menu.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.6", "Mobile")
 
 [autoload]
 
@@ -45,6 +44,6 @@ Launch={
 [rendering]
 
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
-anti_aliasing/quality/msaa_2d=1
 viewport/hdr_2d=true
+anti_aliasing/quality/msaa_2d=1
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvy4p4jgamrb8"]
+[gd_scene format=3 uid="uid://cvy4p4jgamrb8"]
 
-[ext_resource type="Script" path="res://Scripts/enemy_1.gd" id="1_0sjbo"]
+[ext_resource type="Script" uid="uid://bubscqm6080ik" path="res://Scripts/enemy_1.gd" id="1_0sjbo"]
 [ext_resource type="Texture2D" uid="uid://d0inu6w0nmmfy" path="res://Assets/Sprites/HEALENEMY.png" id="2_sxlyw"]
 [ext_resource type="Texture2D" uid="uid://8528c6qncu06" path="res://Assets/Sprites/DMGENEMY.png" id="3_06ac0"]
 [ext_resource type="Texture2D" uid="uid://bybrr0qvhttg2" path="res://Assets/Sprites/ENEMY1n.png" id="4_xn667"]
+[ext_resource type="AudioStream" uid="uid://da13djpovxa0y" path="res://Assets/Audio/explosion.wav" id="5_o6qrp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pakhj"]
 radius = 107.005
@@ -35,23 +36,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Enemy" type="Area2D" node_paths=PackedStringArray("death_timer", "particles", "sprite") groups=["Enemy"]]
+[node name="Enemy" type="Area2D" unique_id=462503542 node_paths=PackedStringArray("death_timer", "particles", "sprite", "explosionsound") groups=["Enemy"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0sjbo")
 death_timer = NodePath("DeathTimer")
 particles = NodePath("CPUParticles2D")
 sprite = NodePath("Sprite2D")
+explosionsound = NodePath("Explosion")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=435970220]
 shape = SubResource("CircleShape2D_pakhj")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1516112448]
 position = Vector2(4, 1.66893e-06)
 scale = Vector2(1.20388, 1.25118)
 sprite_frames = SubResource("SpriteFrames_qi382")
 animation = &"Heal"
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1807835690]
 visible = false
 rotation = -1.58905
 lifetime = 0.7
@@ -66,7 +68,10 @@ scale_amount_min = 0.0
 scale_amount_max = 60.61
 color = Color(0.929412, 0.109804, 0.141176, 1)
 
-[node name="DeathTimer" type="Timer" parent="."]
+[node name="DeathTimer" type="Timer" parent="." unique_id=1127167659]
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="." unique_id=1590288189]
+stream = ExtResource("5_o6qrp")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

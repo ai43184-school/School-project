@@ -3,6 +3,7 @@ extends Area2D
 @export var death_timer: Timer
 @export var particles: CPUParticles2D
 @export var sprite: AnimatedSprite2D
+@export var explosionsound: AudioStreamPlayer2D
 var enemy_type
 
 var chance = ["live", "die"]
@@ -26,6 +27,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		if enemy_type == "enemy":
+			explosionsound.play()
 			death_timer.start()
 			$CollisionShape2D.queue_free()
 			GameManager.enemydeath.emit(1)
@@ -36,6 +38,7 @@ func _on_body_entered(body: Node2D) -> void:
 			GameManager.score += 100
 			
 		if enemy_type == "heal":
+			explosionsound.play()
 			death_timer.start()
 			$CollisionShape2D.queue_free()
 			GameManager.playerheal.emit()
@@ -47,6 +50,7 @@ func _on_body_entered(body: Node2D) -> void:
 			GameManager.score += 100
 		
 		if enemy_type == "spike":
+			explosionsound.play()
 			death_timer.start()
 			$CollisionShape2D.queue_free()
 			GameManager.damage = 1
