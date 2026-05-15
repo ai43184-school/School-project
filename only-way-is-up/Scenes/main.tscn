@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3xobfdw3nmma"]
+[gd_scene load_steps=18 format=3 uid="uid://d3xobfdw3nmma"]
 
 [ext_resource type="PackedScene" uid="uid://dskeh4e2pbtiu" path="res://Scenes/Player.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://mtkea6vefooh" path="res://Scenes/GameManager.tscn" id="4_7nqhl"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://d0tbi32rvp3km" path="res://Assets/Audio/Music/Main Level Song 4.mp3" id="10_pssms"]
 [ext_resource type="Script" path="res://Scripts/lava.gd" id="11_b68fs"]
 [ext_resource type="Script" path="res://Scripts/LavaDMG.gd" id="12_y51gh"]
+[ext_resource type="Texture2D" uid="uid://u0jskb25yfdf" path="res://Assets/Sprites/Instructions.png" id="13_ca8x0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 size = Vector2(1922.22, 117.889)
@@ -107,5 +108,22 @@ script = ExtResource("12_y51gh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lava/Area2D"]
 position = Vector2(5280.5, 4010.5)
 shape = SubResource("RectangleShape2D_ib8ye")
+
+[node name="Instructions 1" type="Sprite2D" parent="."]
+modulate = Color(0.629675, 0.629675, 0.629675, 1)
+position = Vector2(12037, 616)
+rotation = -0.310028
+scale = Vector2(3, 3.173)
+texture = ExtResource("13_ca8x0")
+hframes = 2
+
+[node name="Instructions 2" type="Sprite2D" parent="."]
+modulate = Color(0.629675, 0.629675, 0.629675, 1)
+position = Vector2(13150, 528.001)
+rotation = 0.329674
+scale = Vector2(3, 3.173)
+texture = ExtResource("13_ca8x0")
+hframes = 2
+frame = 1
 
 [connection signal="body_entered" from="Lava/Area2D" to="Lava/Area2D" method="_on_body_entered"]
